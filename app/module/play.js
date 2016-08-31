@@ -6,7 +6,7 @@ var reqwest = require('reqwest');
 
 //module
 var Navbar = require('../module/navbar');
-
+var Alert = require('../module/alert')
 
 var shake=4000,
     last_update=0,
@@ -16,7 +16,11 @@ var Play = React.createClass({
     getInitialState:function(){
       return {
             ck:false,
-            item:null
+            item:{
+                img:'1111',
+                name:'1111',
+                describe:'121212'
+            }
       }
     },
     componentDidMount:function(){
@@ -28,15 +32,16 @@ var Play = React.createClass({
     test:function(){
         var _this = this;
         reqwest({
-            url:'../hps/json/tsconfig.json',
+            url:'../json/tsconfig.json',
             method:'get',
             type:'json',
             success:function(xrh){
+                var a = Math.ceil(Math.random()*8);//判断第几个奖品
                 if(_this.isMounted()){
                     _this.setState({
-                        item:xrh
+                        item:xrh.gift[a]
                     })
-                    console.log(_this.state.item.gift)
+                    console.log(_this.state.item.img)
                 }
             },
             error:function(){}
@@ -73,9 +78,10 @@ var Play = React.createClass({
                     method:'get',
                     type:'json',
                     success:function(xrh){
+                        var a = Math.ceil(Math.random()*8);//判断第几个奖品
                         if(_this.isMounted()){
                             _this.setState({
-                                item:xrh
+                                item:xrh.gift[a]
                             })
                         }
                     },
@@ -97,7 +103,9 @@ var Play = React.createClass({
 
                     </div>
                 </div>
-                <Alert item={ this.state.item }/>
+                <Alert imgsrc={this.state.item.img} describe={this.state.item.describe}
+                name={this.state.item.name}
+                />
                 <Navbar/>
             </div>
         )

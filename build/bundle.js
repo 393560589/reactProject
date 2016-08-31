@@ -25909,6 +25909,7 @@
 
 	//module
 	var Navbar = __webpack_require__(207);
+	var Alert = __webpack_require__(212);
 
 	var shake = 4000,
 	    last_update = 0,
@@ -25925,7 +25926,11 @@
 	    getInitialState: function getInitialState() {
 	        return {
 	            ck: false,
-	            item: null
+	            item: {
+	                img: '1111',
+	                name: '1111',
+	                describe: '121212'
+	            }
 	        };
 	    },
 	    componentDidMount: function componentDidMount() {
@@ -25937,15 +25942,16 @@
 	    test: function test() {
 	        var _this = this;
 	        reqwest({
-	            url: '../hps/json/tsconfig.json',
+	            url: '../json/tsconfig.json',
 	            method: 'get',
 	            type: 'json',
 	            success: function success(xrh) {
+	                var a = Math.ceil(Math.random() * 8); //判断第几个奖品
 	                if (_this.isMounted()) {
 	                    _this.setState({
-	                        item: xrh
+	                        item: xrh.gift[a]
 	                    });
-	                    console.log(_this.state.item.gift);
+	                    console.log(_this.state.item.img);
 	                }
 	            },
 	            error: function error() {}
@@ -25984,11 +25990,11 @@
 	                    method: 'get',
 	                    type: 'json',
 	                    success: function success(xrh) {
+	                        var a = Math.ceil(Math.random() * 8); //判断第几个奖品
 	                        if (_this.isMounted()) {
 	                            _this.setState({
-	                                item: xrh
+	                                item: xrh.gift[a]
 	                            });
-	                            alert(_this.state.item.gift);
 	                        }
 	                    },
 	                    error: function error() {}
@@ -26009,12 +26015,69 @@
 	                { className: 'backGame' },
 	                React.createElement('div', { id: 'game', ref: 'game' })
 	            ),
+	            React.createElement(Alert, { imgsrc: this.state.item.img, describe: this.state.item.describe,
+	                name: this.state.item.name
+	            }),
 	            React.createElement(Navbar, null)
 	        );
 	    }
 	});
 
 	module.exports = Play;
+
+/***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by Administrator on 2016/8/30.
+	 */
+	'use strict';
+
+	var React = __webpack_require__(2);
+
+	var _require = __webpack_require__(158);
+
+	var Link = _require.Link;
+
+	var Alertsweet = React.createClass({
+	    displayName: 'Alertsweet',
+
+	    componentWillMount: function componentWillMount() {
+	        console.log(this.props.imgsrc);
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            { className: 'alertbackground' },
+	            React.createElement(
+	                'div',
+	                { className: 'alertgift' },
+	                React.createElement(
+	                    'h4',
+	                    null,
+	                    '恭喜您获得'
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'giftimg' },
+	                    React.createElement('img', { src: this.props.imgsrc, alt: '中奖礼物' })
+	                ),
+	                React.createElement(
+	                    'p',
+	                    null,
+	                    this.props.describe
+	                ),
+	                React.createElement(
+	                    'a',
+	                    { Link: '/cash', className: 'base-btn' },
+	                    '确定'
+	                )
+	            )
+	        );
+	    }
+	});
+	module.exports = Alertsweet;
 
 /***/ }
 /******/ ]);
