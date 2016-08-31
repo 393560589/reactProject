@@ -1,0 +1,355 @@
+html {
+  height: 100%;
+  font-size: 20px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*  -webkit-font-smoothing: antialiased;*/
+}
+body {
+  max-width: 1080px;
+  height: 100%;
+  background-color: #f2f2f2;
+}
+.fixednav {
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  height: 2rem;
+  line-height: 2rem;
+  background: #fff;
+  border-top: 1px solid #eaeaea;
+}
+.fixednav ul li {
+  width: 33%;
+  text-align: center;
+  font-size: 0.6rem;
+  float: left;
+  color: #666;
+}
+.playHappy {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+}
+.playHappy .backGame {
+  width: 100%;
+  position: relative;
+  height: 100%;
+}
+.playHappy .backGame #game {
+  height: 110%;
+  width: 200%;
+  background: url("../img/wow.jpg") no-repeat center center;
+  background-size: auto 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.playHappy .backGame .move {
+  animation: playGame 0.7s 5;
+  -webkit-animation: playGame 0.7s 5;
+  -o-animation: playGame 0.7s 5;
+  -moz-animation: playGame 0.7s 5;
+  -ms-animation: playGame 0.7s 5;
+}
+@keyframes playGame {
+  0% {
+    transform: translate(-50%, -50%) rotate(2deg);
+  }
+  10% {
+    transform: translate(-50%, -50%) rotate(-2deg);
+  }
+  20% {
+    transform: translate(-50%, -50%) rotate(2deg);
+  }
+  30% {
+    transform: translate(-50%, -50%) rotate(-2deg);
+  }
+  40% {
+    transform: translate(-50%, -50%) rotate(2deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(-2deg);
+  }
+  60% {
+    transform: translate(-50%, -50%) rotate(2deg);
+  }
+  70% {
+    transform: translate(-50%, -50%) rotate(-2deg);
+  }
+  80% {
+    transform: translate(-50%, -50%) rotate(2deg);
+  }
+  90% {
+    transform: translate(-50%, -50%) rotate(-2deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+@-webkit-keyframes playGame {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(2deg);
+  }
+  10% {
+    -webkit-transform: translate(-50%, -50%) rotate(-2deg);
+  }
+  20% {
+    -webkit-transform: translate(-50%, -50%) rotate(2deg);
+  }
+  30% {
+    -webkit-transform: translate(-50%, -50%) rotate(-2deg);
+  }
+  40% {
+    -webkit-transform: translate(-50%, -50%) rotate(2deg);
+  }
+  50% {
+    -webkit-transform: translate(-50%, -50%) rotate(-2deg);
+  }
+  60% {
+    -webkit-transform: translate(-50%, -50%) rotate(2deg);
+  }
+  70% {
+    -webkit-transform: translate(-50%, -50%) rotate(-2deg);
+  }
+  80% {
+    -webkit-transform: translate(-50%, -50%) rotate(2deg);
+  }
+  90% {
+    -webkit-transform: translate(-50%, -50%) rotate(-2deg);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+.playHappy .fixednav {
+  background-color: transparent;
+}
+.playHappy .fixednav a {
+  color: #FFF;
+}
+.alertbackground {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+.alertbackground .alertgift {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: 13.9rem;
+  height: 8.9rem;
+  box-shadow: 0 0 10px #fff;
+  background: #fff;
+  border-radius: 5px;
+}
+.alertbackground .alertgift h4 {
+  font-size: 0.8rem;
+  line-height: 1.8rem;
+}
+.alertbackground .alertgift p {
+  font-size: 0.5rem;
+  color: #666;
+  margin-top: 10px;
+  line-height: 0.55rem;
+}
+.alertbackground .alertgift h4,
+.alertbackground .alertgift p {
+  text-align: center;
+}
+.alertbackground .alertgift a.base-btn {
+  position: absolute;
+  bottom: 2%;
+  left: 5%;
+  width: 90%;
+  background: #1b85b7;
+}
+.alertbackground .alertgift .giftimg {
+  margin: 0 auto;
+  width: 6rem;
+  height: 3rem;
+  overflow: hidden;
+}
+.alertbackground .alertgift .giftimg img {
+  width: 100%;
+}
+.record {
+  padding: 0 0 2.2rem 0 ;
+}
+.record .money {
+  height: 13.8rem;
+  padding: 1.25rem 0 0 0;
+}
+.record .money .wechatImg {
+  margin: 0 auto;
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: 50%;
+  background-color: #333;
+  overflow: hidden;
+}
+.record .money .wechatImg img {
+  width: 100%;
+}
+.record .money .myBalanceTit,
+.record .money .addUp {
+  line-height: 1.6rem;
+}
+.record .money .myBalanceNum {
+  font-size: 0.6rem;
+  color: #f12d12;
+}
+.record .money .myBalanceNum b {
+  font-size: 1.3rem;
+}
+.record .money .addUp {
+  display: block;
+  font-size: 0.6rem;
+  text-align: center;
+  color: #999999;
+}
+.record .money .btnbox {
+  padding: 0 2.9rem;
+}
+.record .money .btnbox li {
+  text-align: center;
+  float: left;
+  font-size: 0.6rem;
+}
+.record .money .btnbox a {
+  display: block;
+  background: transparent;
+  width: 4.8rem;
+  color: #fff;
+}
+.record .money .btnbox .cash {
+  background: #f03820;
+  margin-left: 12px;
+}
+.record .money .btnbox .credit {
+  background: #f49105;
+}
+.record .detailTit {
+  line-height: 2rem;
+  height: 2rem;
+  background-color: #f2f2f2;
+  font-size: 0.6rem;
+  text-indent: 13px;
+}
+.record .record_detail {
+  background-color: #fff;
+  padding: 0 13px;
+}
+.record .record_detail li {
+  font-size: 0.6rem;
+  line-height: 0.8rem;
+  padding: 10px 0;
+  border-bottom: 1px solid #eaeaea;
+}
+.record .record_detail li p {
+  color: #666;
+}
+.record .record_detail li .numWho h4 {
+  color: #00ae00;
+}
+.record .record_detail li .error h4 {
+  color: #f03820;
+}
+.record .record_detail li .titTime {
+  color: #323232;
+}
+.record .record_detail li:nth-last-of-type(1) {
+  border: 0;
+}
+.takeMoney {
+  padding: 14px 14px 2.2rem 14px ;
+  width: 100%;
+  background-color: #f2f2f2;
+}
+.takeMoney .titwrap {
+  margin-bottom: 1rem;
+  padding: 10px 2px 8px 2px;
+  line-height: 1.4rem;
+  color: #000;
+  background-color: #fff;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #eaeaea;
+  font-size: 0.6rem;
+}
+.takeMoney .titwrap .allTake {
+  color: #666;
+}
+.takeMoney .titwrap .common {
+  padding: 0 8px;
+}
+.takeMoney .titwrap .nowCash {
+  height: 1.3rem;
+  border-top: 1px dashed #eaeaea;
+  position: relative;
+  color: #323232;
+}
+.takeMoney .titwrap .nowCash b {
+  color: #f47f01;
+}
+.takeMoney .titwrap .nowCash::after,
+.takeMoney .titwrap .nowCash::before {
+  position: absolute;
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #f2f2f2;
+  top: -5px;
+}
+.takeMoney .titwrap .nowCash::after {
+  left: -5px;
+}
+.takeMoney .titwrap .nowCash::before {
+  right: -5px;
+}
+.takeMoney .titwrap i.iconfont {
+  font-size: 0.8rem;
+  color: #fad930;
+}
+.takeMoney .titwrap input {
+  line-height: 1.4rem;
+  font-size: 0.5rem;
+  text-indent: 10px;
+  color: #000;
+}
+.takeMoney .titwrap input::-webkit-input-placeholder {
+  color: #999;
+}
+.takeMoney a.base-btn {
+  width: 100%;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  line-height: 1.8rem;
+  background-color: #ea5413;
+}
+.takeMoney p.p-detail {
+  font-size: 0.6rem;
+  text-align: center;
+  line-height: 1.2rem;
+  margin-bottom: 1rem;
+}
+.takeMoney p.p-detail b {
+  color: #f47f01;
+}
+.takeMoney .rules {
+  font-weight: normal;
+  font-size: 0.65rem;
+  line-height: 1rem;
+  color: #666;
+}
+.takeMoney .rules h4 {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: #000;
+}

@@ -1,0 +1,370 @@
+html{
+  height: 100%;
+  font-size: 20px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+/*  -webkit-font-smoothing: antialiased;*/
+}
+body{
+  max-width: 1080px;
+  height: 100%;
+  background-color: #f2f2f2;
+
+}
+//导航
+.fixednav{
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  height:2rem;
+  line-height: 2rem;
+  background: #fff;
+  border-top: 1px solid #eaeaea;
+  ul{
+    li{
+      width: 33%;
+      text-align: center;
+      font-size: 0.6rem;
+      float: left;
+      color: #666;
+    }
+  }
+}
+//play摇一摇
+.playHappy{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  .backGame{
+    width: 100%;
+    position: relative;
+    height: 100%;
+    #game{
+      height:110%;
+      width: 200%;
+      background: url("../img/wow.jpg") no-repeat center center;
+      background-size: auto 100%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+    }
+    .move{
+      animation:playGame 0.7s 5;
+      -webkit-animation: playGame 0.7s 5;
+      -o-animation:playGame 0.7s 5;
+      -moz-animation:playGame 0.7s 5;
+      -ms-animation:playGame 0.7s 5;
+    }
+  }
+@keyframes playGame{
+  0%{
+    transform: translate(-50%,-50%) rotate(2deg);
+  }
+  10%{
+      transform: translate(-50%,-50%) rotate(-2deg);
+  }
+  20%{
+    transform: translate(-50%,-50%) rotate(2deg);
+  }
+  30%{
+    transform: translate(-50%,-50%) rotate(-2deg);
+  }
+  40%{
+    transform: translate(-50%,-50%) rotate(2deg);
+  }
+  50%{
+    transform: translate(-50%,-50%) rotate(-2deg);
+  }
+  60%{
+    transform: translate(-50%,-50%) rotate(2deg);
+  }
+  70%{
+    transform: translate(-50%,-50%) rotate(-2deg);
+  }
+  80%{
+    transform: translate(-50%,-50%) rotate(2deg);
+  }
+  90%{
+    transform: translate(-50%,-50%) rotate(-2deg);
+  }
+  100%{
+    transform: translate(-50%,-50%) rotate(0deg);
+  }
+}
+@-webkit-keyframes playGame{
+    0%{
+      -webkit-transform: translate(-50%,-50%) rotate(2deg);
+    }
+    10%{
+      -webkit-transform: translate(-50%,-50%) rotate(-2deg);
+    }
+    20%{
+      -webkit-transform: translate(-50%,-50%) rotate(2deg);
+    }
+    30%{
+      -webkit-transform: translate(-50%,-50%) rotate(-2deg);
+    }
+    40%{
+      -webkit-transform: translate(-50%,-50%) rotate(2deg);
+    }
+    50%{
+      -webkit-transform: translate(-50%,-50%) rotate(-2deg);
+    }
+    60%{
+      -webkit-transform: translate(-50%,-50%) rotate(2deg);
+    }
+    70%{
+      -webkit-transform: translate(-50%,-50%) rotate(-2deg);
+    }
+    80%{
+      -webkit-transform: translate(-50%,-50%) rotate(2deg);
+    }
+    90%{
+      -webkit-transform: translate(-50%,-50%) rotate(-2deg);
+    }
+    100%{
+      -webkit-transform: translate(-50%,-50%) rotate(0deg);
+    }
+}
+  .fixednav{
+    background-color: transparent;
+    a{
+      color: #FFF;
+    }
+  }
+}
+
+//alert中奖信息
+.alertbackground{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  background: rgba(0,0,0,0.1);
+  .alertgift{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-60%);
+    width: 13.9rem;
+    height: 8.9rem;
+    box-shadow: 0 0 10px #fff;
+    background: #fff;
+    border-radius: 5px;
+    h4{
+      font-size: 0.8rem;
+      line-height: 1.8rem;
+    }
+    p{
+      font-size: 0.5rem;
+      color: #666;
+      margin-top: 10px;
+      line-height: 0.55rem;
+    }
+    h4,p{
+      text-align: center;
+    }
+    a.base-btn{
+     position: absolute;
+      bottom: 2%;
+      left: 5%;
+      width: 90%;
+      background: #1b85b7;
+    }
+    .giftimg{
+      margin: 0 auto;
+      width: 6rem;
+      height: 3rem;
+      overflow: hidden;
+      img{
+
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+//账户记录页面
+.record{
+  padding: 0 0 2.2rem 0 ;
+  .money{
+    height: 13.8rem;
+    padding: 1.25rem 0 0 0;
+    .wechatImg{
+      margin: 0 auto;
+      width: 4.8rem;
+      height: 4.8rem;
+      border-radius: 50%;
+      background-color: #333;
+      overflow: hidden;
+      img{
+        width: 100%;
+      }
+    }
+    .myBalanceTit,.addUp{
+      line-height: 1.6rem;
+    }
+    .myBalanceNum{
+      font-size: 0.6rem;
+      b{
+        font-size: 1.3rem;
+      }
+      color: #f12d12;
+    }
+    .addUp{
+      display: block;
+      font-size:0.6rem;
+      text-align: center;
+      color: #999999;
+    }
+    .btnbox{
+      padding:0 2.9rem;
+      li{
+        text-align: center;
+        float: left;
+        font-size: 0.6rem;
+      }
+      a{
+        display: block;
+        background: transparent;
+        width: 4.8rem;
+        color: #fff;
+      }
+      .cash{
+        background:#f03820;
+        margin-left: 12px;
+      }
+      .credit{
+        background:#f49105;
+      }
+    }
+  }
+  .detailTit{
+    line-height: 2rem;
+    height: 2rem;
+    background-color: #f2f2f2;
+    font-size:0.6rem;
+    text-indent: 13px;
+  }
+  .record_detail{
+    background-color: #fff;
+    padding: 0 13px;
+    li{
+      font-size: 0.6rem;
+      line-height: 0.8rem;
+      padding: 10px 0;
+      border-bottom:1px solid #eaeaea;
+      p{
+        color: #666;
+      }
+      .numWho{
+        h4{
+          color:#00ae00;
+        }
+      }
+      .error{
+        h4{
+          color: #f03820;
+        }
+      }
+      .titTime{
+        color: #323232;
+      }
+    }
+    li:nth-last-of-type(1){
+      border:0;
+    }
+  }
+}
+
+//takeMoney
+.takeMoney{
+  padding: 14px 14px 2.2rem 14px ;
+  width: 100%;
+  background-color: #f2f2f2;
+  .titwrap{
+    margin-bottom: 1rem;
+    padding: 10px 2px 8px 2px;
+    line-height: 1.4rem;
+    color: #000;
+    background-color: #fff;
+    width: 100%;
+    border-radius: 6px;
+    border:1px solid #eaeaea;
+    font-size:0.6rem;
+    .allTake{
+      color: #666;
+    }
+    .common{
+      padding: 0 8px;
+    }
+    .nowCash{
+      height: 1.3rem;
+      border-top: 1px dashed #eaeaea;
+      position: relative;
+      color:#323232;
+      b{
+        color: #f47f01;
+      }
+    }
+    .nowCash::after,
+    .nowCash::before{
+      position: absolute;
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #f2f2f2;
+      top: -5px;
+    }
+    .nowCash::after{
+      left: -5px;
+    }
+    .nowCash::before{
+      right: -5px;
+    }
+    i.iconfont{
+      font-size: 0.8rem;
+      color: #fad930;
+    }
+    input{
+      line-height: 1.4rem;
+      font-size: 0.5rem;
+      text-indent: 10px;
+      color:#000;
+    }
+    input::-webkit-input-placeholder{
+      color: #999;
+    }
+  }
+  a.base-btn{
+    width: 100%;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    line-height: 1.8rem;
+    background-color: #ea5413;
+  }
+  p.p-detail{
+    b{
+      color: #f47f01;
+    }
+    font-size: 0.6rem;
+    text-align: center;
+    line-height: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .rules{
+    font-weight: normal;
+    font-size: 0.65rem;
+    line-height: 1rem;
+    color: #666;
+    h4{
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: #000;
+    }
+  }
+}
