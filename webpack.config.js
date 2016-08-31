@@ -1,4 +1,4 @@
-
+/*
 var webpack = require('webpack');
 
 module.exports = {
@@ -24,10 +24,9 @@ module.exports = {
         new webpack.NoErrorsPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ]
-}
-/*
-*
- * Created by Administrator on 2016/8/28.
+}*/
+
+
 var webpack = require('webpack');
 
 module.exports = {
@@ -45,4 +44,4 @@ module.exports = {
             }
         ]
     }
-}*/
+}

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>我的收入</title>
-    <script src="config/base.js"></script>
     <link rel="stylesheet" href="css/pubilc.css">
     <link rel="stylesheet" href="css/less.css">
 </head>
@@ -29,11 +28,6 @@
 </div>
 <script src="app/config/base.js"></script>
 <script>
-document.getElementById('ppp').onclick = function(){
-    alert('hehe')
-}
-
-
     var  shake=4000,
             last_update=0,
             count=0,
@@ -43,8 +37,6 @@ document.getElementById('ppp').onclick = function(){
     }else{
         alert("本设备不支持devicemotion事件");
     }
-
-    console.log(new Date().valueOf());
     function deviceMotionHandler(eventData){
         var acceleration = eventData.accelerationIncludingGravity,
                 currTime=new Date().valueOf(),
