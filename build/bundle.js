@@ -25927,18 +25927,25 @@
 	        return {
 	            ck: false,
 	            item: {
-	                img: '1111',
-	                name: '1111',
-	                describe: '121212'
+	                img: null,
+	                name: null,
+	                describe: null
 	            }
 	        };
 	    },
+	    /* handleClick:function(newState){
+	         this.test();
+	         console.log(this.state.ck)
+	     },*/
 	    componentDidMount: function componentDidMount() {
-	        this.test();
+	        if (this.state.ck) {
+	            return alert('您已经摇过了');
+	        }
 	        if (window.DeviceMotionEvent) {
 	            window.addEventListener('devicemotion', this.deviceMotionHandler, false);
 	        }
 	    },
+
 	    test: function test() {
 	        var _this = this;
 	        reqwest({
@@ -25949,9 +25956,10 @@
 	                var a = Math.ceil(Math.random() * 8); //判断第几个奖品
 	                if (_this.isMounted()) {
 	                    _this.setState({
+	                        ck: true,
 	                        item: xrh.gift[a]
 	                    });
-	                    console.log(_this.state.item.img);
+	                    alert(_this.state.ck);
 	                }
 	            },
 	            error: function error() {}
@@ -25961,6 +25969,7 @@
 	        var acceleration = event.accelerationIncludingGravity,
 	            currTime = new Date().valueOf(),
 	            diffTime = currTime - last_update;
+	        var _this = this;
 	        if (diffTime > 100) {
 	            last_update = currTime;
 	            x = acceleration.x;
@@ -25982,9 +25991,6 @@
 	                    this.game.className = '';
 	                };
 	                load.add();
-	                setTimeout(load.remove, 5000);
-
-	                var _this = this;
 	                reqwest({
 	                    url: '../hps/json/tsconfig.json',
 	                    method: 'get',
@@ -25993,12 +25999,14 @@
 	                        var a = Math.ceil(Math.random() * 8); //判断第几个奖品
 	                        if (_this.isMounted()) {
 	                            _this.setState({
+	                                ck: true,
 	                                item: xrh.gift[a]
 	                            });
 	                        }
 	                    },
 	                    error: function error() {}
 	                });
+	                setTimeout(load.remove, 5000);
 	            }
 	            last_x = x;
 	            last_y = y;
@@ -26016,7 +26024,7 @@
 	                React.createElement('div', { id: 'game', ref: 'game' })
 	            ),
 	            React.createElement(Alert, { imgsrc: this.state.item.img, describe: this.state.item.describe,
-	                name: this.state.item.name
+	                name: this.state.item.name, ck: this.state.ck
 	            }),
 	            React.createElement(Navbar, null)
 	        );
@@ -26038,18 +26046,18 @@
 
 	var _require = __webpack_require__(158);
 
+	var Router = _require.Router;
+	var Route = _require.Route;
 	var Link = _require.Link;
 
 	var Alertsweet = React.createClass({
 	    displayName: 'Alertsweet',
 
-	    componentWillMount: function componentWillMount() {
-	        console.log(this.props.imgsrc);
-	    },
 	    render: function render() {
+	        var styleObj = this.props.ck ? 'block' : 'none';
 	        return React.createElement(
 	            'div',
-	            { className: 'alertbackground' },
+	            { className: 'alertbackground', style: { display: styleObj } },
 	            React.createElement(
 	                'div',
 	                { className: 'alertgift' },
@@ -26069,8 +26077,8 @@
 	                    this.props.describe
 	                ),
 	                React.createElement(
-	                    'a',
-	                    { Link: '/cash', className: 'base-btn' },
+	                    Link,
+	                    { to: '/cash', className: 'base-btn' },
 	                    '确定'
 	                )
 	            )

@@ -17,18 +17,25 @@ var Play = React.createClass({
       return {
             ck:false,
             item:{
-                img:'1111',
-                name:'1111',
-                describe:'121212'
+                img:null,
+                name:null,
+                describe:null
             }
       }
     },
+   /* handleClick:function(newState){
+        this.test();
+        console.log(this.state.ck)
+    },*/
     componentDidMount:function(){
-        this.test()
-        if(window.DeviceMotionEvent){
+        if(this.state.ck){
+            return alert('您已经摇过了')
+        }
+       if(window.DeviceMotionEvent){
             window.addEventListener("devicemotion",this.deviceMotionHandler,false);
         }
     },
+
     test:function(){
         var _this = this;
         reqwest({
@@ -39,9 +46,10 @@ var Play = React.createClass({
                 var a = Math.ceil(Math.random()*8);//判断第几个奖品
                 if(_this.isMounted()){
                     _this.setState({
+                        ck:true,
                         item:xrh.gift[a]
                     })
-                    console.log(_this.state.item.img)
+                    alert(_this.state.ck)
                 }
             },
             error:function(){}
@@ -51,6 +59,7 @@ var Play = React.createClass({
         var acceleration = event.accelerationIncludingGravity,
             currTime=new Date().valueOf(),
             diffTime=currTime-last_update;
+        var _this = this;
         if(diffTime>100){
             last_update=currTime;
             x=acceleration.x;
@@ -70,9 +79,6 @@ var Play = React.createClass({
                     this.game.className = ''
                 }
                 load.add();
-                setTimeout(load.remove,5000);
-
-                var _this = this;
                 reqwest({
                     url:'../hps/json/tsconfig.json',
                     method:'get',
@@ -81,13 +87,14 @@ var Play = React.createClass({
                         var a = Math.ceil(Math.random()*8);//判断第几个奖品
                         if(_this.isMounted()){
                             _this.setState({
+                                ck:true,
                                 item:xrh.gift[a]
                             })
                         }
                     },
                     error:function(){}
                 })
-
+                setTimeout(load.remove,5000);
             }
             last_x = x;
             last_y = y;
@@ -104,7 +111,7 @@ var Play = React.createClass({
                     </div>
                 </div>
                 <Alert imgsrc={this.state.item.img} describe={this.state.item.describe}
-                name={this.state.item.name}
+                name={this.state.item.name} ck={this.state.ck}
                 />
                 <Navbar/>
             </div>
