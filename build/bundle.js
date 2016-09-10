@@ -67,12 +67,15 @@
 	var Account = __webpack_require__(206);
 	var Shark = __webpack_require__(210);
 	var Play = __webpack_require__(211);
-
+	var Prize = __webpack_require__(213);
+	var Exchange = __webpack_require__(214);
 	var routes = React.createElement(
 	    Router,
-	    null,
+	    { history: hashHistory },
 	    React.createElement(Route, { name: 'user', path: '/', component: Account }),
 	    React.createElement(Route, { name: 'cash', path: 'cash', component: Shark }),
+	    React.createElement(Route, { name: 'exchange', path: 'exchange', component: Exchange }),
+	    React.createElement(Route, { name: 'prize', path: 'prize', component: Prize }),
 	    React.createElement(Route, { name: 'play', path: 'play', component: Play })
 	);
 	React.render(React.createElement(Router, { routes: routes, history: hashHistory }), document.body);
@@ -25122,6 +25125,20 @@
 	                    null,
 	                    React.createElement(
 	                        Link,
+	                        { to: '/exchange' },
+	                        React.createElement(
+	                            'i',
+	                            { className: 'iconfont' },
+	                            ''
+	                        ),
+	                        '积分'
+	                    )
+	                ),
+	                React.createElement(
+	                    'li',
+	                    null,
+	                    React.createElement(
+	                        Link,
 	                        { to: '/' },
 	                        React.createElement(
 	                            'i',
@@ -25798,6 +25815,15 @@
 	var Shark = React.createClass({
 	    displayName: 'Shark',
 
+	    componentWillMount: function componentWillMount() {
+	        reqwest({
+	            url: '../json/terrify.json',
+	            method: 'get',
+	            type: 'json',
+	            success: function success() {},
+	            error: function error() {}
+	        });
+	    },
 	    render: function render() {
 	        return React.createElement(
 	            'div',
@@ -25938,9 +25964,6 @@
 	         console.log(this.state.ck)
 	     },*/
 	    componentDidMount: function componentDidMount() {
-	        if (this.state.ck) {
-	            return alert('您已经摇过了');
-	        }
 	        if (window.DeviceMotionEvent) {
 	            window.addEventListener('devicemotion', this.deviceMotionHandler, false);
 	        }
@@ -25966,6 +25989,7 @@
 	        });
 	    },
 	    deviceMotionHandler: function deviceMotionHandler(event) {
+
 	        var acceleration = event.accelerationIncludingGravity,
 	            currTime = new Date().valueOf(),
 	            diffTime = currTime - last_update;
@@ -26086,6 +26110,309 @@
 	    }
 	});
 	module.exports = Alertsweet;
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by Administrator on 2016/9/10.
+	 */
+	'use strict';
+
+	var React = __webpack_require__(2);
+
+	var _require = __webpack_require__(158);
+
+	var Link = _require.Link;
+	var Router = _require.Router;
+	var Route = _require.Route;
+
+	var reqwest = __webpack_require__(208);
+
+	var Prize = React.createClass({
+	    displayName: 'Prize',
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            list: null,
+	            check: false
+	        };
+	    },
+	    componentDidMount: function componentDidMount() {
+	        var _this = this;
+	        reqwest({
+	            url: '../json/prize.json',
+	            method: 'get',
+	            type: 'json',
+	            success: function success(xrh) {
+	                if (xrh.code) {
+	                    if (_this.isMounted()) {
+	                        _this.setState({
+	                            check: true,
+	                            list: xrh.list
+	                        });
+	                    }
+	                }
+	            },
+	            error: function error() {}
+	        });
+	    },
+	    render: function render() {
+	        if (this.state.check) {
+	            var Resp = this.state.list.map(function (item) {
+	                return React.createElement(
+	                    'li',
+	                    null,
+	                    React.createElement(
+	                        'div',
+	                        { className: 'monWrap' },
+	                        React.createElement(
+	                            'i',
+	                            { className: 'iconfont' },
+	                            ''
+	                        ),
+	                        item.rmb
+	                    ),
+	                    React.createElement(
+	                        'h4',
+	                        null,
+	                        item.rmb,
+	                        '元短信'
+	                    ),
+	                    React.createElement(
+	                        'p',
+	                        null,
+	                        React.createElement(
+	                            'i',
+	                            { className: 'iconfont' },
+	                            ''
+	                        ),
+	                        item.worth
+	                    )
+	                );
+	            });
+	        }
+	        return React.createElement(
+	            'div',
+	            { className: 'Market' },
+	            React.createElement(
+	                'div',
+	                { className: 'titTop' },
+	                React.createElement(
+	                    'i',
+	                    { className: 'iconfont' },
+	                    ''
+	                ),
+	                '可用积分：',
+	                React.createElement(
+	                    'b',
+	                    null,
+	                    '1206'
+	                ),
+	                React.createElement(
+	                    'a',
+	                    { href: '', className: 'pull-right takeRe' },
+	                    '兑换记录'
+	                )
+	            ),
+	            React.createElement(
+	                'ul',
+	                { className: 'section clearfix' },
+	                Resp
+	            ),
+	            React.createElement(
+	                'a',
+	                { className: 'abtn', href: '' },
+	                '兑换记录'
+	            )
+	        );
+	    }
+	});
+	module.exports = Prize;
+
+/***/ },
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by Administrator on 2016/9/8.
+	 */
+	'use strict';
+
+	var React = __webpack_require__(2);
+
+	var _require = __webpack_require__(158);
+
+	var Router = _require.Router;
+	var Route = _require.Route;
+	var Link = _require.Link;
+
+	//module
+	var Navbar = __webpack_require__(207);
+
+	var item = [{
+	    'class': 'phoneMon iconfont pull-left',
+	    icon: React.createElement(
+	        'pre',
+	        { className: 'iconfont' },
+	        ''
+	    ),
+	    name: '话费',
+	    link: '/prize'
+	}, {
+	    'class': 'inter iconfont pull-left',
+	    icon: React.createElement(
+	        'pre',
+	        { className: 'iconfont' },
+	        ''
+	    ),
+	    name: '流量',
+	    link: '/prize'
+	}, {
+	    'class': 'message iconfont pull-left',
+	    icon: React.createElement(
+	        'pre',
+	        { className: 'iconfont' },
+	        ''
+	    ),
+	    name: '短信',
+	    link: '/prize'
+	}, {
+	    'class': 'traffic iconfont pull-left',
+	    icon: React.createElement(
+	        'pre',
+	        { className: 'iconfont' },
+	        ''
+	    ),
+	    name: '积分夺宝',
+	    link: '/prize'
+	}, {
+	    'class': 'more iconfont pull-left',
+	    icon: React.createElement(
+	        'pre',
+	        { className: 'iconfont' },
+	        ''
+	    ),
+	    name: '更多',
+	    link: '/prize'
+	}];
+	var Exchange = React.createClass({
+	    displayName: 'Exchange',
+
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            { className: 'integral' },
+	            React.createElement(
+	                'div',
+	                { className: 'titleWrap' },
+	                React.createElement(
+	                    'p',
+	                    { className: 'commonLeft commonP' },
+	                    React.createElement(
+	                        'i',
+	                        { className: 'iconfont' },
+	                        ''
+	                    ),
+	                    '18042317468'
+	                ),
+	                React.createElement(
+	                    'p',
+	                    { className: 'commonLeft commonP' },
+	                    '剩余积分'
+	                ),
+	                React.createElement(
+	                    'h4',
+	                    { className: 'havInter' },
+	                    React.createElement(
+	                        'strong',
+	                        null,
+	                        '1260'
+	                    ),
+	                    '分'
+	                ),
+	                React.createElement(
+	                    'ul',
+	                    { className: 'classify clearfix' },
+	                    React.createElement(
+	                        'li',
+	                        { className: 'commonLeft' },
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            '上月新增'
+	                        ),
+	                        React.createElement(
+	                            'h2',
+	                            null,
+	                            '340'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'li',
+	                        { className: 'commonLeft' },
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            '年底到期'
+	                        ),
+	                        React.createElement(
+	                            'h2',
+	                            null,
+	                            '0'
+	                        )
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'listCount' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'CountTit clearfix' },
+	                    React.createElement(
+	                        'p',
+	                        { className: 'pull-left' },
+	                        '积分兑换'
+	                    ),
+	                    React.createElement(
+	                        'a',
+	                        { className: 'btnRecode pull-right', href: '' },
+	                        '兑换记录'
+	                    )
+	                ),
+	                React.createElement(
+	                    'ul',
+	                    null,
+	                    item.map(function (item) {
+	                        return React.createElement(
+	                            Link,
+	                            { className: 'listType clearfix', to: item.link },
+	                            React.createElement(
+	                                'i',
+	                                { className: item['class'] },
+	                                item.icon
+	                            ),
+	                            React.createElement(
+	                                'p',
+	                                { className: 'pull-left' },
+	                                item.name
+	                            ),
+	                            React.createElement(
+	                                'span',
+	                                { className: 'iconfont pull-right' },
+	                                ''
+	                            )
+	                        );
+	                    })
+	                )
+	            ),
+	            React.createElement(Navbar, null)
+	        );
+	    }
+	});
+	module.exports = Exchange;
 
 /***/ }
 /******/ ]);

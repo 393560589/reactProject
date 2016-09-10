@@ -8,6 +8,17 @@ var  reqwest = require('reqwest');
 
 
 var Shark = React.createClass({
+    componentWillMount:function(){
+        reqwest({
+            url:'../json/terrify.json',
+            method:'get',
+            type:'json',
+            success:function(){
+
+            },
+            error:function(){}
+        })
+    },
     render:function(){
         return (
             <div className="takeMoney">

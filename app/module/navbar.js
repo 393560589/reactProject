@@ -38,6 +38,14 @@ var Navbar = React.createClass({
                         </Link>
                     </li>
                     <li>
+                        <Link to='/exchange'>
+                            <i className="iconfont">
+                                &#xe605;
+                            </i>
+                            积分
+                        </Link>
+                    </li>
+                    <li>
                         <Link to='/'>
                             <i className="iconfont">
                                 &#xe605;

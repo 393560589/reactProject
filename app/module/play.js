@@ -28,9 +28,6 @@ var Play = React.createClass({
         console.log(this.state.ck)
     },*/
     componentDidMount:function(){
-        if(this.state.ck){
-            return alert('您已经摇过了')
-        }
        if(window.DeviceMotionEvent){
             window.addEventListener("devicemotion",this.deviceMotionHandler,false);
         }
@@ -56,6 +53,7 @@ var Play = React.createClass({
         })
     },
     deviceMotionHandler:function(event){
+        
         var acceleration = event.accelerationIncludingGravity,
             currTime=new Date().valueOf(),
             diffTime=currTime-last_update;
