@@ -11,6 +11,9 @@ var Account = React.createClass({
     getInitialState:function(){
       return {xrh:null ,loading:false}
     },
+    clickhandler:function () {
+
+    },
     componentDidMount:function(){
         var _this = this;
         reqwest({

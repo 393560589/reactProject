@@ -8,16 +8,33 @@ var  reqwest = require('reqwest');
 
 
 var Shark = React.createClass({
+    getInitialState:function () {
+      return {
+          addup:null,
+          lasted:null
+      }
+    },
     componentWillMount:function(){
+        var _this = this;
         reqwest({
-            url:'../json/terrify.json',
+            url:'./json/terrify.json',
             method:'get',
             type:'json',
-            success:function(){
-
+            success:function(xrh){
+                if(_this.isMounted()){
+                    _this.setState({
+                        addup:xrh.addup,
+                        lasted:xrh.lasted
+                    })
+                }
             },
             error:function(){}
         })
+    },
+    takeClick:function () {
+        var ap = document.getElementById('addup'),
+            allCash = document.getElementById('allCash');
+        allCash.value = ap.innerHTML;
     },
     render:function(){
         return (
@@ -29,16 +46,16 @@ var Shark = React.createClass({
                             <i className="iconfont pull-left">
                                 &#xe602;
                             </i>
-                            <input className="pull-left" type="tel" placeholder="请输入提现金额"/>
+                            <input id="allCash" className="pull-left" type="tel" placeholder="请输入提现金额"/>
                         </li>
                         <li className="nowCash common clearfix">
-                            <span className="pull-left">当前余额：<b>1.00元</b></span>
-                            <span className="pull-right allTake">全部提现</span>
+                            <span className="pull-left">当前余额：<b id="addup" ref="bAddup">{this.state.addup}</b>元</span>
+                            <span className="pull-right allTake" onClick={this.takeClick}>全部提现</span>
                         </li>
                     </ul>
                 </div>
                 <a className="base-btn">提现</a>
-                <p className="p-detail">本月还可以提现<b>3</b>次</p>
+                <p className="p-detail">本月还可以提现<b>{this.state.lasted}</b>次</p>
 
                 <ul className="rules">
                     <h4>提现规则</h4>

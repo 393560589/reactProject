@@ -129,3 +129,10 @@ select {
     text-align: center;
     border-radius: 4px;
 }
+a,img{
+    -webkit-touch-callout: none;
+
+}
+html,body{
+    -webkit-user-select: none;
+}

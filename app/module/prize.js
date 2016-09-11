@@ -17,7 +17,7 @@ var Prize = React.createClass({
     componentDidMount:function(){
         var _this = this;
         reqwest({
-            url:'../json/prize.json',
+            url:'./json/prize.json',
             method:'get',
             type:'json',
             success:function(xrh){

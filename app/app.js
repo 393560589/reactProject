@@ -1,6 +1,10 @@
 var React = require('react');
 var {Route,Router,hashHistory} = require('react-router');
 require('./config/base');
+var newFastClick = require('fastclick');
+document.ready = function(){
+        newFastClick(document.body);
+}
 
 //module
 var Account = require('./module/account');

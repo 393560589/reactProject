@@ -36,7 +36,7 @@ var Play = React.createClass({
     test:function(){
         var _this = this;
         reqwest({
-            url:'../json/tsconfig.json',
+            url:'./json/tsconfig.json',
             method:'get',
             type:'json',
             success:function(xrh){
@@ -53,7 +53,9 @@ var Play = React.createClass({
         })
     },
     deviceMotionHandler:function(event){
-        
+        /*if(this.state.ck){
+            return alert('您已经摇过了')
+        }*/
         var acceleration = event.accelerationIncludingGravity,
             currTime=new Date().valueOf(),
             diffTime=currTime-last_update;
