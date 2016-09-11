@@ -510,3 +510,87 @@ body {
   font-size: 0.5rem;
   text-align: center;
 }
+.convert {
+  font-size: 0.6rem;
+}
+.convert .format {
+  padding: 0 14px;
+}
+.convert .CustomerPhone {
+  height: 1.9rem;
+  line-height: 1.9rem;
+  color: #666;
+}
+.convert .phoneCon {
+  background-color: #fff;
+  height: 2rem;
+  line-height: 2rem;
+  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
+}
+.convert .phoneCon .pull-right {
+  color: #666;
+}
+.convert .formSubmit {
+  padding-left: 14px;
+  border-bottom: 1px solid #eaeaea;
+  border-top: 1px solid #eaeaea;
+  margin-top: 0.8rem;
+  background-color: #fff;
+}
+.convert .formSubmit li {
+  padding-right: 14px;
+  line-height: 2rem;
+  height: 2.1rem;
+  border-top: 1px solid #eaeaea;
+}
+.convert .formSubmit li p {
+  float: left;
+}
+.convert .formSubmit li .yellow {
+  color: #ff7d07;
+}
+.convert .formSubmit li .numBalance i + div {
+  line-height: 2rem;
+  display: inline-block;
+}
+.convert .formSubmit li .numBalance i.iconfont {
+  color: #999;
+  width: 0.8rem;
+  font-size: 0.8rem;
+}
+.convert .formSubmit li .numBalance input {
+  font-size: 0.6rem;
+  text-align: center;
+  width: 2rem;
+  height: 1.3rem;
+  border: 1px solid #eaeaea;
+}
+.convert .formSubmit li .numBalance div {
+  padding: 0 10px;
+}
+.convert .formSubmit li span {
+  display: block;
+  float: right;
+}
+.convert .formSubmit li:nth-of-type(1) {
+  border-top: none;
+}
+.convert a.abtn {
+  margin: 20px 0;
+  text-align: center;
+  display: block;
+  width: 100%;
+  color: #fff;
+  line-height: 2rem;
+  height: 2rem;
+  font-size: 0.8rem;
+  background-color: #06bf04;
+  border-radius: 4px;
+}
+.convert .explain {
+  display: block;
+  text-align: center;
+  color: #617794;
+  font-size: 0.5rem;
+}

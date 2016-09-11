@@ -73,6 +73,8 @@
 	var Play = __webpack_require__(212);
 	var Prize = __webpack_require__(214);
 	var Exchange = __webpack_require__(215);
+	var Convert = __webpack_require__(216);
+
 	var routes = React.createElement(
 	    Router,
 	    { history: hashHistory },
@@ -80,7 +82,8 @@
 	    React.createElement(Route, { name: 'cash', path: 'cash', component: Shark }),
 	    React.createElement(Route, { name: 'exchange', path: 'exchange', component: Exchange }),
 	    React.createElement(Route, { name: 'prize', path: 'prize', component: Prize }),
-	    React.createElement(Route, { name: 'play', path: 'play', component: Play })
+	    React.createElement(Route, { name: 'play', path: 'play', component: Play }),
+	    React.createElement(Route, { name: 'convert', path: 'convert', component: Convert })
 	);
 	React.render(React.createElement(Router, { routes: routes, history: hashHistory }), document.body);
 
@@ -27267,6 +27270,189 @@
 	    }
 	});
 	module.exports = Exchange;
+
+/***/ },
+/* 216 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by Administrator on 2016/9/11.
+	 */
+	'use strict';
+
+	var React = __webpack_require__(2);
+
+	var reqwest = __webpack_require__(209);
+
+	var Convert = React.createClass({
+	    displayName: 'Convert',
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            num: 1,
+	            phone: 10000
+	        };
+	    },
+	    cartClick: function cartClick() {
+	        var numVal = document.getElementById('howmany');
+	        if (numVal.value > 1) {
+	            numVal.value--;
+	        } else {
+	            numVal.value = 1;
+	        }
+	        this.setState({
+	            num: numVal.value
+	        });
+	    },
+	    addClick: function addClick() {
+	        var numVal = document.getElementById('howmany');
+	        numVal.value++;
+	        this.setState({
+	            num: numVal.value
+	        });
+	    },
+	    componentDidMount: function componentDidMount() {
+	        reqwest({
+	            url: './json/terrify.json',
+	            method: 'get',
+	            type: 'json',
+	            success: function success(xrh) {}
+	        });
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            { className: 'convert' },
+	            React.createElement(
+	                'h2',
+	                { className: 'CustomerPhone format' },
+	                '您的手机号码'
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'format clearfix phoneCon' },
+	                React.createElement(
+	                    'span',
+	                    { className: 'pull-left' },
+	                    this.state.phone
+	                ),
+	                React.createElement(
+	                    'i',
+	                    { className: 'pull-right iconfont' },
+	                    ''
+	                ),
+	                React.createElement(
+	                    'span',
+	                    { className: 'pull-right' },
+	                    '绑定账号'
+	                )
+	            ),
+	            React.createElement(
+	                'ul',
+	                { className: 'formSubmit' },
+	                React.createElement(
+	                    'li',
+	                    { className: 'clearfix' },
+	                    React.createElement(
+	                        'p',
+	                        null,
+	                        '单价'
+	                    ),
+	                    React.createElement(
+	                        'span',
+	                        null,
+	                        '1000积分'
+	                    )
+	                ),
+	                React.createElement(
+	                    'li',
+	                    { className: 'clearfix' },
+	                    React.createElement(
+	                        'p',
+	                        null,
+	                        '数量'
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'pull-right numBalance' },
+	                        React.createElement(
+	                            'i',
+	                            { className: 'iconfont commonlist cart', onClick: this.cartClick },
+	                            ''
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'commonlist' },
+	                            React.createElement('input', { id: 'howmany', type: 'tel', value: this.state.num })
+	                        ),
+	                        React.createElement(
+	                            'i',
+	                            { className: 'iconfont commonlist add', onClick: this.addClick },
+	                            ''
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'li',
+	                    { className: 'clearfix' },
+	                    React.createElement(
+	                        'p',
+	                        null,
+	                        '总价'
+	                    ),
+	                    React.createElement(
+	                        'span',
+	                        { className: 'yellow' },
+	                        '1000积分'
+	                    )
+	                ),
+	                React.createElement(
+	                    'li',
+	                    { className: 'clearfix' },
+	                    React.createElement(
+	                        'p',
+	                        null,
+	                        '持有积分'
+	                    ),
+	                    React.createElement(
+	                        'span',
+	                        { className: 'yellow' },
+	                        '2000积分'
+	                    )
+	                ),
+	                React.createElement(
+	                    'li',
+	                    { className: 'clearfix' },
+	                    React.createElement(
+	                        'p',
+	                        null,
+	                        '兑换话费'
+	                    ),
+	                    React.createElement(
+	                        'span',
+	                        null,
+	                        '10元'
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'format' },
+	                React.createElement(
+	                    'a',
+	                    { href: '', className: 'abtn' },
+	                    '立即兑换'
+	                )
+	            ),
+	            React.createElement(
+	                'a',
+	                { className: 'explain', href: '' },
+	                '话费兑换说明'
+	            )
+	        );
+	    }
+	});
+	module.exports = Convert;
 
 /***/ }
 /******/ ]);

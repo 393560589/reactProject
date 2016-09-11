@@ -12,6 +12,8 @@ var Shark = require('../app/module/shark');
 var Play = require('../app/module/play');
 var Prize = require('../app/module/prize')
 var Exchange = require('../app/module/exchange');
+var Convert = require('./module/convert')
+
 var routes = (
     <Router history={hashHistory}>
         <Route name="user" path="/" component={Account} />
@@ -19,6 +21,7 @@ var routes = (
         <Route name="exchange" path='exchange' component={Exchange}/>
         <Route name="prize" path='prize' component={Prize} />
         <Route name="play" path='play' component={Play} />
+        <Route name="convert" path='convert' component={Convert} />
     </Router>
 )
 React.render((
