@@ -5,9 +5,66 @@ html {
   /*  -webkit-font-smoothing: antialiased;*/
 }
 body {
-  max-width: 1080px;
+  width: 100%;
   height: 100%;
   background-color: #f2f2f2;
+}
+.Slider {
+  width: 100%;
+}
+.Slider #prve,
+.Slider #next {
+  position: absolute;
+  z-index: 99;
+  color: #fff;
+  font-size: 1rem;
+  display: block;
+  background: #000;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.Slider #prve {
+  left: 0;
+}
+.Slider #next {
+  right: 0;
+}
+.Slider .sliderbox {
+  overflow: hidden;
+  height: 5.8rem;
+  position: relative;
+}
+.Slider .sliderbox .imgbox {
+  position: absolute;
+}
+.Slider .sliderbox .imgbox li {
+  float: left;
+}
+.Slider .sliderbox img {
+  width: 100%;
+}
+.Slider .sliderbox .sliderBtn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  bottom: 0.5rem;
+}
+.Slider .sliderbox .sliderBtn li {
+  max-width: 20px;
+  max-height: 20px;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  float: left;
+  margin-left: 0.3rem;
+}
+.Slider .sliderbox .sliderBtn .on {
+  background: rgba(0, 0, 0, 0.8);
+}
+.Slider .sliderbox .sliderBtn li:nth-of-type(1) {
+  margin-left: 0;
 }
 .fixednav {
   width: 100%;
