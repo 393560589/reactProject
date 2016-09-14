@@ -13,7 +13,7 @@ var Play = require('../app/module/play');
 var Prize = require('../app/module/prize');
 var Exchange = require('../app/module/exchange');
 var Convert = require('./module/convert');
-var Banner =require('./module/banner');
+var Banner =require('./module/slider');
 var routes = (
     <Router history={hashHistory}>
         <Route name="user" path="/" component={Account} />

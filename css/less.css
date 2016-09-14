@@ -10,7 +10,7 @@ body {
   background-color: #f2f2f2;
 }
 .Slider {
-  width: 100%;
+  width: 16rem;
 }
 .Slider #prve,
 .Slider #next {
@@ -35,13 +35,14 @@ body {
   position: relative;
 }
 .Slider .sliderbox .imgbox {
+  transition: all .3s;
   position: absolute;
 }
 .Slider .sliderbox .imgbox li {
   float: left;
 }
 .Slider .sliderbox img {
-  width: 100%;
+  width: 16rem;
 }
 .Slider .sliderbox .sliderBtn {
   position: absolute;

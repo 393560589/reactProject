@@ -28,6 +28,7 @@
     opacity: 0;
 }
 .slider__slide__text {
+    display: none;
     position: absolute;
     top: 20px;
     left: 20px;
