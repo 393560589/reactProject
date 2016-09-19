@@ -27466,11 +27466,21 @@
 
 	var React = __webpack_require__(2);
 
+	var img = ['img/01.jpg', 'img/02.jpg', 'img/01.jpg', 'img/02.jpg'];
+	var index = [];
+	var id = 0;
+	var interval = 1000;
+	var timer;
+	for (var i = 0, len; i <= img.length - 1; i++) {
+	    index.push(i);
+	}
+
 	var Slider = React.createClass({
 	    displayName: 'Slider',
 
 	    getInitialState: function getInitialState() {
 	        return {
+	            buttons: null, //小圆点这种
 	            movebox: null, //移动的盒子
 	            isanmite: false, //判断动画
 	            wrapWidth: 16, //盒子总宽度16为基本
@@ -27478,14 +27488,17 @@
 	            start: 0 };
 	    },
 	    componentDidMount: function componentDidMount() {
-
 	        var animWrap = document.getElementById('animWrap');
+	        var buttons = document.getElementById('sliderBtn').getElementsByTagName('li');
 	        animWrap.style.width = this.state.wrapWidth * animWrap.children.length + 'rem'; //盒子的总宽度
 	        var Wrap = parseInt(animWrap.style.width);
+	        /*;*/buttons[id].className = 'on';
 	        this.setState({
 	            movebox: animWrap,
-	            wrapWidth: Wrap
+	            wrapWidth: Wrap,
+	            buttons: buttons
 	        });
+	        this.play();
 	    },
 	    animationAcheive: function animationAcheive(offset) {
 	        this.state.movebox.style.left = this.state.start + offset + 'rem';
@@ -27507,83 +27520,85 @@
 	        }
 	    },
 	    leftMove: function leftMove() {
+	        console.log(id);
+	        if (id <= 0) {
+	            id = img.length - 1;
+	        } else {
+	            id--;
+	        }
+
 	        this.animationAcheive(this.state.imgmove);
+	        this.showButton();
 	    },
 	    rightMove: function rightMove() {
+	        if (id >= img.length - 1) {
+	            id = 0;
+	        } else {
+	            id++;
+	        }
 	        this.animationAcheive(-this.state.imgmove);
+	        this.showButton();
+	    },
+	    showButton: function showButton() {
+	        for (var i = 0; i < this.state.buttons.length; i++) {
+	            if (this.state.buttons[i].className == 'on') {
+	                this.state.buttons[i].className = '';
+	                break;
+	            }
+	        }
+	        this.state.buttons[id].className = 'on';
+	    },
+	    btnClick: function btnClick(e) {
+	        var _this = e.target,
+	            index = _this.getAttribute('id');
+	        if (_this.className == 'on') {
+	            return;
+	        }
+	        var offset = -16 * (index - id);
+	        this.animationAcheive(offset);
+	        id = index;
+	        this.showButton();
+	    },
+	    play: function play() {
+	        var _this_ = this;
+	        timer = setTimeout(function () {
+	            _this_.rightMove();
+	            _this_.play();
+	        }, interval);
+	    },
+	    stop: function stop() {
+	        clearTimeout(timer);
 	    },
 	    render: function render() {
+	        var showbtn = [];
+	        for (var i = 0; i < index.length; i++) {
+	            showbtn.push(React.createElement('li', { id: i, onClick: this.btnClick }));
+	        }
 	        return React.createElement(
 	            'div',
 	            { className: 'Slider' },
 	            React.createElement(
 	                'div',
-	                { className: 'sliderbox' },
+	                { className: 'sliderbox', onMouseOut: this.play, onMouseMove: this.stop },
 	                React.createElement(
 	                    'ul',
 	                    { className: 'imgbox', id: 'animWrap', style: { left: '0' } },
-	                    React.createElement(
-	                        'li',
-	                        null,
-	                        React.createElement(
-	                            'a',
-	                            { href: '' },
-	                            React.createElement('img', { src: 'img/01.jpg', alt: '' })
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'li',
-	                        null,
-	                        React.createElement(
-	                            'a',
-	                            { href: '' },
-	                            React.createElement('img', { src: 'img/02.jpg', alt: '' })
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'li',
-	                        null,
-	                        React.createElement(
-	                            'a',
-	                            { href: '' },
-	                            React.createElement('img', { src: 'img/01.jpg', alt: '' })
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'li',
-	                        null,
-	                        React.createElement(
-	                            'a',
-	                            { href: '' },
-	                            React.createElement('img', { src: 'img/02.jpg', alt: '' })
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'li',
-	                        null,
-	                        React.createElement(
-	                            'a',
-	                            { href: '' },
-	                            React.createElement('img', { src: 'img/01.jpg', alt: '' })
-	                        )
-	                    ),
-	                    React.createElement(
-	                        'li',
-	                        null,
-	                        React.createElement(
-	                            'a',
-	                            { href: '' },
-	                            React.createElement('img', { src: 'img/02.jpg', alt: '' })
-	                        )
-	                    )
+	                    img.map(function (item) {
+	                        return React.createElement(
+	                            'li',
+	                            null,
+	                            React.createElement(
+	                                'a',
+	                                { href: '' },
+	                                React.createElement('img', { src: item, alt: '' })
+	                            )
+	                        );
+	                    })
 	                ),
 	                React.createElement(
 	                    'ul',
-	                    { className: 'sliderBtn' },
-	                    React.createElement('li', { className: 'on' }),
-	                    React.createElement('li', null),
-	                    React.createElement('li', null),
-	                    React.createElement('li', null)
+	                    { className: 'sliderBtn', id: 'sliderBtn' },
+	                    showbtn
 	                ),
 	                React.createElement(
 	                    'a',
@@ -27599,6 +27614,7 @@
 	        );
 	    }
 	});
+
 	module.exports = Slider;
 	//开始的left值
 
