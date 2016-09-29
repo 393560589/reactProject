@@ -1,6 +1,7 @@
 /**
  * Created by Administrator on 2016/8/16.
  */
+
 (function (doc, win) {
     var docEl = doc.documentElement,
         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',

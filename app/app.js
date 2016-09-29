@@ -9,7 +9,7 @@ document.ready = function(){
 //module
 var Account = require('./module/account');
 var Shark = require('../app/module/shark');
-var Play = require('../app/module/play');
+var Play = require('../app/module/fatPlay');
 var Prize = require('../app/module/prize');
 var Exchange = require('../app/module/exchange');
 var Convert = require('./module/convert');

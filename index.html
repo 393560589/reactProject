@@ -11,8 +11,13 @@
     <title>Document</title>
 </head>
 <body>
-
-
 <script src="build/bundle.js"></script>
+<script>
+    window.onload =function () {
+        if(window.screen.width>900){
+            document.write('请在手机端打开页面')
+        }
+    }
+</script>
 </body>
 </html>

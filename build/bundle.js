@@ -24893,9 +24893,14 @@
 	/**
 	 * Created by Administrator on 2016/8/16.
 	 */
+
 	'use strict';
 
 	(function (doc, win) {
+	    if (window.screen.width > 1000) {
+	        document.write('请在手机端打开页面');
+	    }
+
 	    var docEl = doc.documentElement,
 	        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
 	        recalc = function recalc() {
@@ -26815,99 +26820,148 @@
 	            }
 	        };
 	    },
-	    /* handleClick:function(newState){
-	         this.test();
-	         console.log(this.state.ck)
-	     },*/
 	    componentDidMount: function componentDidMount() {
 	        if (window.DeviceMotionEvent) {
-	            window.addEventListener('devicemotion', this.deviceMotionHandler, false);
+	            window.addEventListener('devicemotion', deviceMotionHandler, false);
 	        }
-	    },
+	        var anBoat = document.getElementById('animateBoat');
+	        var alertBlock = document.getElementById('alertBlock');
+	        var close = document.getElementById('close');
+	        var chanceNum = document.getElementById('chanceNum');
 
-	    test: function test() {
-	        var _this = this;
-	        reqwest({
-	            url: './json/tsconfig.json',
-	            method: 'get',
-	            type: 'json',
-	            success: function success(xrh) {
-	                var a = Math.ceil(Math.random() * 8); //判断第几个奖品
-	                if (_this.isMounted()) {
-	                    _this.setState({
-	                        ck: true,
-	                        item: xrh.gift[a]
-	                    });
-	                    alert(_this.state.ck);
+	        function boatObj() {
+	            this.a;
+	            this.b;
+	        }
+	        boatObj.prototype.appear = function () {
+	            setTimeout(function () {
+	                alertBlock.style.display = 'block';
+	                this.a = parseInt(chanceNum.innerHTML);
+	                this.a--;
+	                this.b = this.a;
+	                if (this.b > 0) {
+	                    chanceNum.innerHTML = this.b;
+	                } else {
+	                    chanceNum.innerHTML = 0;
 	                }
-	            },
-	            error: function error() {}
-	        });
-	    },
-	    deviceMotionHandler: function deviceMotionHandler(event) {
-	        /*if(this.state.ck){
-	            return alert('您已经摇过了')
-	        }*/
-	        var acceleration = event.accelerationIncludingGravity,
-	            currTime = new Date().valueOf(),
-	            diffTime = currTime - last_update;
-	        var _this = this;
-	        if (diffTime > 100) {
-	            last_update = currTime;
-	            x = acceleration.x;
-	            y = acceleration.y;
-	            z = acceleration.z;
-	            var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
-	            if (speed > shake) {
-	                var move = function (game) {
-	                    this.game = id;
-	                };
+	            }, 2500);
+	        };
+	        boatObj.prototype.disappear = function () {
+	            alertBlock.style.display = 'none';
+	        };
+	        close.onclick = function () {
+	            boat.disappear();
+	            anBoat.className = 'animationBoat';
+	        };
+	        var boat = new boatObj(); //不管干嘛，先撸个类。做构造回头用
 
-	                var id = React.findDOMNode(this.refs.game);
-
-	                var load = new move();
-	                move.prototype.add = function () {
-	                    this.game.className = 'move';
-	                };
-	                move.prototype.remove = function () {
-	                    this.game.className = '';
-	                };
-	                load.add();
-	                reqwest({
-	                    url: '../hps/json/tsconfig.json',
-	                    method: 'get',
-	                    type: 'json',
-	                    success: function success(xrh) {
-	                        var a = Math.ceil(Math.random() * 8); //判断第几个奖品
-	                        if (_this.isMounted()) {
-	                            _this.setState({
-	                                ck: true,
-	                                item: xrh.gift[a]
-	                            });
-	                        }
-	                    },
-	                    error: function error() {}
-	                });
-	                setTimeout(load.remove, 5000);
+	        function deviceMotionHandler(event) {
+	            var acceleration = event.accelerationIncludingGravity,
+	                currTime = new Date().valueOf(),
+	                diffTime = currTime - last_update;
+	            if (diffTime > 100) {
+	                last_update = currTime;
+	                x = acceleration.x;
+	                y = acceleration.y;
+	                z = acceleration.z;
+	                var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
+	                if (speed > shake) {
+	                    if (parseInt(chanceNum.innerHTML) == 0) {
+	                        alert('没机会了还玩，傻吊');
+	                        return;
+	                    }
+	                    boat.appear();
+	                    anBoat.className = 'animationBoat boatmove';
+	                }
+	                last_x = x;
+	                last_y = y;
+	                last_z = z;
 	            }
-	            last_x = x;
-	            last_y = y;
-	            last_z = z;
 	        }
 	    },
-
 	    render: function render() {
 	        return React.createElement(
 	            'div',
-	            { className: 'playHappy', id: 'playHappy' },
+	            { className: 'playGame' },
 	            React.createElement(
 	                'div',
-	                { className: 'backGame' },
-	                React.createElement('div', { id: 'game', ref: 'game' })
+	                { className: 'containerWrap' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'animationBoat', id: 'animateBoat' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'toop' },
+	                        React.createElement(
+	                            'p',
+	                            { className: 'rotateTran' },
+	                            React.createElement(
+	                                'span',
+	                                null,
+	                                '摇动频幕，领取红包'
+	                            ),
+	                            React.createElement('br', null),
+	                            React.createElement(
+	                                'span',
+	                                null,
+	                                '今天你还有',
+	                                React.createElement(
+	                                    'b',
+	                                    { id: 'chanceNum' },
+	                                    '3'
+	                                ),
+	                                '次机会'
+	                            )
+	                        )
+	                    )
+	                )
 	            ),
-	            React.createElement(Alert, { imgsrc: this.state.item.img, describe: this.state.item.describe,
-	                name: this.state.item.name, ck: this.state.ck
-	            }),
+	            React.createElement(
+	                'div',
+	                { className: 'alertbackground', id: 'alertBlock', style: { display: 'none' } },
+	                React.createElement(
+	                    'div',
+	                    { className: 'conWrap' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'conta' },
+	                        React.createElement(
+	                            'a',
+	                            { href: '', className: 'imgbox' },
+	                            React.createElement('img', { src: 'img/gift/alezl.jpg', alt: '' })
+	                        ),
+	                        React.createElement(
+	                            'ul',
+	                            { className: 'logoMon' },
+	                            React.createElement(
+	                                'li',
+	                                { className: 'accId' },
+	                                React.createElement('img', { src: '', alt: '' })
+	                            ),
+	                            React.createElement(
+	                                'li',
+	                                null,
+	                                '天天挂传奇的红包'
+	                            ),
+	                            React.createElement(
+	                                'li',
+	                                { style: { fontWeight: 'bold', color: ' #ff3334', fontSize: ' 0.9rem' } },
+	                                '0.05元'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'a',
+	                            { href: '', className: 'btn', id: 'btn' },
+	                            '立即提现'
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'againGame', id: 'close' },
+	                    '再摇一次'
+	                )
+	            ),
 	            React.createElement(Navbar, null)
 	        );
 	    }
