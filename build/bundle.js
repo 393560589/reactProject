@@ -69,12 +69,13 @@
 
 	//module
 	var Account = __webpack_require__(207);
-	var Shark = __webpack_require__(211);
-	var Play = __webpack_require__(212);
-	var Prize = __webpack_require__(214);
-	var Exchange = __webpack_require__(215);
-	var Convert = __webpack_require__(216);
-	var Banner = __webpack_require__(217);
+	var Shark = __webpack_require__(211); //提现
+	var Play = __webpack_require__(212); //  摇一摇
+	var Prize = __webpack_require__(213);
+	var Exchange = __webpack_require__(214); //积分兑换
+	var Convert = __webpack_require__(215); //
+	var Banner = __webpack_require__(216); //banner轮播
+	var Advert = __webpack_require__(217); //广告页面
 	var routes = React.createElement(
 	    Router,
 	    { history: hashHistory },
@@ -84,7 +85,8 @@
 	    React.createElement(Route, { name: 'prize', path: 'prize', component: Prize }),
 	    React.createElement(Route, { name: 'play', path: 'play', component: Play }),
 	    React.createElement(Route, { name: 'convert', path: 'convert', component: Convert }),
-	    React.createElement(Route, { name: 'Banner', path: 'Banner', component: Banner })
+	    React.createElement(Route, { name: 'Banner', path: 'Banner', component: Banner }),
+	    React.createElement(Route, { name: 'Advert', path: 'Advert', component: Advert })
 	);
 	React.render(React.createElement(Router, { routes: routes, history: hashHistory }), document.body);
 
@@ -24897,10 +24899,6 @@
 	'use strict';
 
 	(function (doc, win) {
-	    if (window.screen.width > 1000) {
-	        document.write('请在手机端打开页面');
-	    }
-
 	    var docEl = doc.documentElement,
 	        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
 	        recalc = function recalc() {
@@ -25956,7 +25954,7 @@
 	        ''
 	    ),
 	    item: '积分',
-	    Link: '/exchange'
+	    Link: '/Advert'
 	}, {
 	    icon: React.createElement(
 	        'pre',
@@ -26796,7 +26794,6 @@
 
 	//module
 	var Navbar = __webpack_require__(208);
-	var Alert = __webpack_require__(213);
 
 	var shake = 4000,
 	    last_update = 0,
@@ -26810,16 +26807,6 @@
 	var Play = React.createClass({
 	    displayName: 'Play',
 
-	    getInitialState: function getInitialState() {
-	        return {
-	            ck: false,
-	            item: {
-	                img: null,
-	                name: null,
-	                describe: null
-	            }
-	        };
-	    },
 	    componentDidMount: function componentDidMount() {
 	        if (window.DeviceMotionEvent) {
 	            window.addEventListener('devicemotion', deviceMotionHandler, false);
@@ -26974,60 +26961,6 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
-	 * Created by Administrator on 2016/8/30.
-	 */
-	'use strict';
-
-	var React = __webpack_require__(2);
-
-	var _require = __webpack_require__(158);
-
-	var Router = _require.Router;
-	var Route = _require.Route;
-	var Link = _require.Link;
-
-	var Alertsweet = React.createClass({
-	    displayName: 'Alertsweet',
-
-	    render: function render() {
-	        var styleObj = this.props.ck ? 'block' : 'none';
-	        return React.createElement(
-	            'div',
-	            { className: 'alertbackground', style: { display: styleObj } },
-	            React.createElement(
-	                'div',
-	                { className: 'alertgift' },
-	                React.createElement(
-	                    'h4',
-	                    null,
-	                    '恭喜您获得'
-	                ),
-	                React.createElement(
-	                    'div',
-	                    { className: 'giftimg' },
-	                    React.createElement('img', { src: this.props.imgsrc, alt: '中奖礼物' })
-	                ),
-	                React.createElement(
-	                    'p',
-	                    null,
-	                    this.props.describe
-	                ),
-	                React.createElement(
-	                    Link,
-	                    { to: '/cash', className: 'base-btn' },
-	                    '确定'
-	                )
-	            )
-	        );
-	    }
-	});
-	module.exports = Alertsweet;
-
-/***/ },
-/* 214 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
 	 * Created by Administrator on 2016/9/10.
 	 */
 	'use strict';
@@ -27144,7 +27077,7 @@
 	module.exports = Prize;
 
 /***/ },
-/* 215 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -27327,7 +27260,7 @@
 	module.exports = Exchange;
 
 /***/ },
-/* 216 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -27510,7 +27443,7 @@
 	module.exports = Convert;
 
 /***/ },
-/* 217 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -27671,6 +27604,227 @@
 
 	module.exports = Slider;
 	//开始的left值
+
+/***/ },
+/* 217 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Created by Administrator on 2016/9/30.
+	 */
+	'use strict';
+
+	var React = __webpack_require__(2);
+
+	var _require = __webpack_require__(158);
+
+	var Link = _require.Link;
+	var Route = _require.Route;
+
+	var Navbar = __webpack_require__(208);
+
+	var Advert = React.createClass({
+	    displayName: 'Advert',
+
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            { className: 'advertising' },
+	            React.createElement(
+	                'div',
+	                { className: 'personDetail clearfix' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'pull-left clearfix' },
+	                    React.createElement(
+	                        'i',
+	                        { className: 'logowrap' },
+	                        React.createElement('img', { src: './img/image/wow.jpg', alt: '' })
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'logotit' },
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            '今天共摇到了0.15元'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            '你的支持，是土豪们的动力哦'
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'pull-right' },
+	                    React.createElement(
+	                        'span',
+	                        null,
+	                        '提现'
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                'ul',
+	                { className: 'list' },
+	                React.createElement(
+	                    'li',
+	                    null,
+	                    React.createElement(
+	                        'a',
+	                        { className: 'advWrap' },
+	                        React.createElement('img', { src: './img/gift/htzh.jpg', alt: '' })
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'fxbox clearfix' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'pull-left clearfix' },
+	                            React.createElement(
+	                                'i',
+	                                { className: 'logowrap' },
+	                                React.createElement('img', { src: './img/image/wow.jpg', alt: '' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'logotit' },
+	                                React.createElement(
+	                                    'p',
+	                                    null,
+	                                    '零钱拼宝'
+	                                ),
+	                                React.createElement(
+	                                    'p',
+	                                    null,
+	                                    '2元中5000，中不中都返本。'
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'pull-right' },
+	                            React.createElement(
+	                                'i',
+	                                { className: 'iconfont' },
+	                                ''
+	                            ),
+	                            React.createElement(
+	                                'span',
+	                                null,
+	                                '支持Ta'
+	                            )
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'li',
+	                    null,
+	                    React.createElement(
+	                        'a',
+	                        { className: 'advWrap' },
+	                        React.createElement('img', { src: './img/gift/htzh.jpg', alt: '' })
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'fxbox clearfix' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'pull-left clearfix' },
+	                            React.createElement(
+	                                'i',
+	                                { className: 'logowrap' },
+	                                React.createElement('img', { src: './img/image/wow.jpg', alt: '' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'logotit' },
+	                                React.createElement(
+	                                    'p',
+	                                    null,
+	                                    '零钱拼宝'
+	                                ),
+	                                React.createElement(
+	                                    'p',
+	                                    null,
+	                                    '2元中5000，中不中都返本。'
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'pull-right' },
+	                            React.createElement(
+	                                'i',
+	                                { className: 'iconfont' },
+	                                ''
+	                            ),
+	                            React.createElement(
+	                                'span',
+	                                null,
+	                                '支持Ta'
+	                            )
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'li',
+	                    null,
+	                    React.createElement(
+	                        'a',
+	                        { className: 'advWrap' },
+	                        React.createElement('img', { src: './img/gift/htzh.jpg', alt: '' })
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'fxbox clearfix' },
+	                        React.createElement(
+	                            'div',
+	                            { className: 'pull-left clearfix' },
+	                            React.createElement(
+	                                'i',
+	                                { className: 'logowrap' },
+	                                React.createElement('img', { src: './img/image/wow.jpg', alt: '' })
+	                            ),
+	                            React.createElement(
+	                                'div',
+	                                { className: 'logotit' },
+	                                React.createElement(
+	                                    'p',
+	                                    null,
+	                                    '零钱拼宝'
+	                                ),
+	                                React.createElement(
+	                                    'p',
+	                                    null,
+	                                    '2元中5000，中不中都返本。'
+	                                )
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'div',
+	                            { className: 'pull-right' },
+	                            React.createElement(
+	                                'i',
+	                                { className: 'iconfont' },
+	                                ''
+	                            ),
+	                            React.createElement(
+	                                'span',
+	                                null,
+	                                '支持Ta'
+	                            )
+	                        )
+	                    )
+	                )
+	            ),
+	            React.createElement(Navbar, null)
+	        );
+	    }
+	});
+	module.exports = Advert;
 
 /***/ }
 /******/ ]);

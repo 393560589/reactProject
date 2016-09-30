@@ -92,111 +92,7 @@ body{
   }
 }
 
-//play摇一摇demo
-/*.playHappy{
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  .backGame{
-    width: 100%;
-    position: relative;
-    height: 100%;
-    #game{
-      height:110%;
-      width: 200%;
-      background: url("../img/wow.jpg") no-repeat center center;
-      background-size: auto 100%;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%,-50%);
-    }
-    .move{
-      animation:playGame 0.7s 5;
-      -webkit-animation: playGame 0.7s 5;
-      -o-animation:playGame 0.7s 5;
-      -moz-animation:playGame 0.7s 5;
-      -ms-animation:playGame 0.7s 5;
-    }
-  }
-@keyframes playGame{
-  0%{
-    transform: translate(-50%,-50%) rotate(2deg);
-  }
-  10%{
-      transform: translate(-50%,-50%) rotate(-2deg);
-  }
-  20%{
-    transform: translate(-50%,-50%) rotate(2deg);
-  }
-  30%{
-    transform: translate(-50%,-50%) rotate(-2deg);
-  }
-  40%{
-    transform: translate(-50%,-50%) rotate(2deg);
-  }
-  50%{
-    transform: translate(-50%,-50%) rotate(-2deg);
-  }
-  60%{
-    transform: translate(-50%,-50%) rotate(2deg);
-  }
-  70%{
-    transform: translate(-50%,-50%) rotate(-2deg);
-  }
-  80%{
-    transform: translate(-50%,-50%) rotate(2deg);
-  }
-  90%{
-    transform: translate(-50%,-50%) rotate(-2deg);
-  }
-  100%{
-    transform: translate(-50%,-50%) rotate(0deg);
-  }
-}
-@-webkit-keyframes playGame{
-    0%{
-      -webkit-transform: translate(-50%,-50%) rotate(2deg);
-    }
-    10%{
-      -webkit-transform: translate(-50%,-50%) rotate(-2deg);
-    }
-    20%{
-      -webkit-transform: translate(-50%,-50%) rotate(2deg);
-    }
-    30%{
-      -webkit-transform: translate(-50%,-50%) rotate(-2deg);
-    }
-    40%{
-      -webkit-transform: translate(-50%,-50%) rotate(2deg);
-    }
-    50%{
-      -webkit-transform: translate(-50%,-50%) rotate(-2deg);
-    }
-    60%{
-      -webkit-transform: translate(-50%,-50%) rotate(2deg);
-    }
-    70%{
-      -webkit-transform: translate(-50%,-50%) rotate(-2deg);
-    }
-    80%{
-      -webkit-transform: translate(-50%,-50%) rotate(2deg);
-    }
-    90%{
-      -webkit-transform: translate(-50%,-50%) rotate(-2deg);
-    }
-    100%{
-      -webkit-transform: translate(-50%,-50%) rotate(0deg);
-    }
-}
-  .fixednav{
-    background-color: transparent;
-    a{
-      color: #FFF;
-    }
-  }
-}*/
+
 //play摇一摇具体
 .playGame{
   height:100%;
@@ -363,6 +259,80 @@ body{
   }
 }
 
+//。advertising积分广告页面
+.advertising{
+  .personDetail,
+  .fxbox{
+    padding: 5px 10px;
+    font-size: 0.6rem;
+    line-height: 0.9rem;
+    .logotit,.logowrap{
+      float:left
+    }
+    .logowrap{
+      margin-right: 8px;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 1000%;
+      overflow: hidden;
+    }
+    .pull-right{
+      line-height: 1.8rem;
+      color: #fff;
+      border-radius: 4px;
+    }
+  }
+  .fxbox{
+
+      .pull-right{
+        background: #f29104;
+        padding: 0 5px;
+        height: 100%;
+     
+    }
+
+  }
+  .personDetail{
+    background-color: #fff;
+    margin-bottom: 14px;
+    .logowrap{
+      width: 2.7rem;
+      height: 2.7rem;
+    }
+    .logotit{
+      height: 2.7rem;
+      padding: 0.3rem 0;
+    }
+    .pull-right{
+      line-height: 2.7rem;
+      color: #7ecabc;
+      border-radius: 4px;
+      span{
+        padding: 8px 12px;
+        border:1px solid #7ecabc;
+        border-radius: 2px;
+      }
+    }
+  }
+  img{width: 100%}
+  width: 100%;
+    .list{
+      li{
+        margin-bottom: 12px;
+        background: #fff;
+        .advWrap{
+          display: block;
+          height: 7.5rem;
+          overflow: hidden;
+
+        }
+
+      }
+      li:nth-last-of-type(1){
+        margin-bottom: 2rem;
+      }
+    }
+}
 
 //账户记录页面
 .record{

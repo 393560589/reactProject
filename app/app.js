@@ -8,12 +8,13 @@ document.ready = function(){
 
 //module
 var Account = require('./module/account');
-var Shark = require('../app/module/shark');
-var Play = require('../app/module/fatPlay');
+var Shark = require('../app/module/shark'); //提现
+var Play = require('../app/module/fatPlay'); //  摇一摇
 var Prize = require('../app/module/prize');
-var Exchange = require('../app/module/exchange');
-var Convert = require('./module/convert');
-var Banner =require('./module/slider');
+var Exchange = require('../app/module/exchange'); //积分兑换
+var Convert = require('./module/convert'); //
+var Banner =require('./module/slider');  //banner轮播
+var Advert = require('./module/advert');  //广告页面
 var routes = (
     <Router history={hashHistory}>
         <Route name="user" path="/" component={Account} />
@@ -23,6 +24,7 @@ var routes = (
         <Route name="play" path='play' component={Play} />
         <Route name="convert" path='convert' component={Convert} />
         <Route name="Banner" path='Banner' component={Banner} />
+        <Route name="Advert" path='Advert' component={Advert} />
     </Router>
 )
 React.render((

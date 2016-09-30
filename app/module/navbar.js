@@ -16,7 +16,7 @@ var item = [
     {
         icon:<pre className="iconfont">&#xe60e;</pre>,
         item:'积分',
-        Link:'/exchange'
+        Link:'/Advert'
     },
     {
         icon:<pre className="iconfont">&#xe605;</pre>,
