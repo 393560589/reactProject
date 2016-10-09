@@ -1,119 +1,146 @@
+/**
+ * Created by Administrator on 2016/9/14.
+ */
+var React =require('react');
 
-var React = require('react');
-
-
-
-var Slide = React.createClass({
-    displayName: "Slide",
-
-    render: function render() {
-
-        var background = this.props.background;
-        var text = this.props.text;
-        var link = this.props.link;
-        var active = this.props.active;
-
-        var slideStyle = {
-            backgroundImage: "url(" + background + ")"
-        };
-
-        return React.createElement(
-            "div", {
-                className: "slider__slide",
-                "data-active": active,
-                style: slideStyle
-            },
-            React.createElement(
-                "div", {
-                    className: "slider__slide__text"
-                },
-                React.createElement(
-                    "a", {
-                        href: link
-                    },
-                    text
-                )
-            )
-        );
-    }
-});
+var img=[
+    'img/01.jpg',
+    'img/02.jpg',
+    'img/01.jpg',
+    'img/02.jpg'
+]
+var index =[];
+var id=0;
+var interval = 1000;
+var timer;
+for(var i=0,len;i<=img.length-1;i++){
+    index.push(i)
+}
 
 var Slider = React.createClass({
-    displayName: "Slider",
-
-    getInitialState: function getInitialState() {
+    getInitialState:function () {
         return {
-            slides : [{
-                background: "https://ununsplash.imgix.net/photo-1434828927397-62ea053f7a35?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050",
-                text: "",
-                link: ""
-            }, {
-                background: "https://images.unsplash.com/photo-1434394673726-e8232a5903b4?q=80&fm=jpg&s=b154bdf22a4885c8e2dd1b845c5fe996",
-                text: "Mountains",
-                link: "https://unsplash.com/aleskrivec"
-            }, {
-                background: "https://images.unsplash.com/photo-1432691301971-c8b920198bd7?q=80&fm=jpg&s=d6b5970179cd2bc77c3b56165da56f80",
-                text: "Shore",
-                link: "https://unsplash.com/intrepid"
-            }],
-            activeSlide: 0
-        };
+            buttons:null,//小圆点这种
+            movebox:null,//移动的盒子
+            isanmite:false,//判断动画
+            wrapWidth:16,//盒子总宽度16为基本
+            imgmove:16,//盒子走势
+            start:0,//开始的left值
+        }
     },
-
-    nextSlide: function nextSlide() {
-        var slide = this.state.activeSlide + 1 < this.state.slides.length ? this.state.activeSlide + 1 : 0;
+    componentDidMount:function () {
+        var animWrap = document.getElementById('animWrap');
+        var buttons = document.getElementById('sliderBtn').getElementsByTagName('li');
+        animWrap.style.width = (this.state.wrapWidth) * (animWrap.children.length)+'rem';//盒子的总宽度
+        var Wrap = parseInt(animWrap.style.width);
+        /*;*/buttons[id].className='on'
         this.setState({
-            activeSlide: slide
+            movebox:animWrap,
+            wrapWidth: Wrap,
+            buttons:buttons
         });
+        this.play()
     },
-
-    previousSlide: function previousSlide() {
-        var slide = this.state.activeSlide - 1 < 0 ? this.state.slides.length - 1 : this.state.activeSlide - 1;
+    animationAcheive:function (offset) {
+        this.state.movebox.style.left =this.state.start +offset+'rem';
+        var start = parseInt(this.state.movebox.style.left);
         this.setState({
-            activeSlide: slide
-        });
+            start:start
+        })
+        if(start>0){
+            this.state.movebox.style.left = -(this.state.wrapWidth-16)+'rem'
+            this.setState({
+                start:-(this.state.wrapWidth-16)
+            })
+        }
+        if(start<-(this.state.wrapWidth-16)){
+            this.state.movebox.style.left = 0
+            this.setState({
+                start:0
+            })
+        }
     },
+    leftMove:function(){
+        console.log(id)
+        if(id<=0){
+            id=img.length-1
+        }else{
+            id--
+        }
 
-    render: function render() {
-        var _this = this;
+        this.animationAcheive(this.state.imgmove);
+        this.showButton()
+    },
+    rightMove:function () {
+        if(id>=img.length-1){
+            id = 0
+        }else{
+            id++
+        }
+        this.animationAcheive(-this.state.imgmove);
+        this.showButton()
+    },
+    showButton:function () {
+        for(var i=0;i<this.state.buttons.length;i++){
+            if(this.state.buttons[i].className=='on'){
+                this.state.buttons[i].className ='';
+                break
+            }
+        }
+        this.state.buttons[id].className='on';
+    },
+    btnClick:function (e) {
+        var _this = e.target,
+            index = _this.getAttribute('id');
+        if(_this.className=='on'){
+            return
+        }
+        var offset = -16*(index-id);
+        this.animationAcheive(offset);
+        id = index;
+        this.showButton()
+    },
+    play:function () {
+        var _this_ = this
+        timer = setTimeout(function(){
+            _this_.rightMove();
+            _this_.play()
+        },interval)
+    },
+    stop:function () {
+        clearTimeout(timer)
+    },
+    render:function () {
+        var showbtn = [];
+        for(var i=0;i<index.length;i++){
+            showbtn.push(
+                <li id={i} onClick={this.btnClick}>
 
-        var slides = this.state.slides;
-        console.log(this.state.slides)
-        return React.createElement(
-            "div", {
-                className: "slider"
-            },
-            slides.map(function(slide, index, array) {
-                return React.createElement(Slide, {
-                    background: slide.background,
-                    text: slide.text,
-                    active: index === _this.state.activeSlide,
-                    link: slide.link
-                });
-            }),
-            React.createElement(
-                "div", {
-                    className: "slider__next",
-                    onClick: this.nextSlide
-                },
-                React.createElement("i", {
-                    className: "fa fa-4x fa-arrow-circle-right"
-                })
-            ),
-            React.createElement(
-                "div", {
-                    className: "slider__previous",
-                    onClick: this.previousSlide
-                },
-                React.createElement("i", {
-                    className: "fa fa-4x fa-arrow-circle-left"
-                })
+                </li>
             )
-        );
+        }
+        return (
+            <div className="Slider">
+                <div className="sliderbox" onMouseOut={this.play} onMouseMove={this.stop}>
+                    <ul className="imgbox" id="animWrap" style={{left:'0'}}>
+                        {
+                            img.map(function (item) {
+                                return (
+                                    <li><a href=""><img src={item} alt=""/></a></li>
+                                )
+                            })
+                        }
+                    </ul>
+                    <ul className="sliderBtn" id="sliderBtn">
+                        {showbtn}
+                    </ul>
+                    <a id="prve" onClick={this.leftMove}>左边</a>
+                    <a id="next" onClick={this.rightMove}>右边</a>
+                </div>
+            </div>
+        )
     }
 });
 
 
-var Banner =Slider;
-module.exports = Banner;
-
+module.exports = Slider;

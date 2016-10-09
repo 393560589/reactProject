@@ -6,7 +6,6 @@ var reqwest = require('reqwest');
 
 //module
 var Navbar = require('../module/navbar');
-
 var shake=4000,
     last_update=0,
     x=0,y=0,z=0,last_x=0,last_y=0,last_z=0;

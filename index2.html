@@ -6,8 +6,101 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #oInp ul{
+            position: relative;
+        }
+        #oInp li{
+            color: #fff2bf;
+            text-align: center;
+            list-style: none;
+            line-height:80px;
+            width:100%;
+            background: rgba(0,0,0,0.2);
+            border-bottom: 1px solid #fff;
+        }
+    </style>
 </head>
 <body>
+    <div id="oInp">
+        <ul>
+            <li class="num" id="1">1</li>
+            <li class="num" id="2">2</li>
+            <li class="num" id="3">3</li>
+            <li class="num" id="4">4</li>
+            <li class="num" id="5">5</li>
+            <li class="num" id="6">6</li>
+            <li class="num" id="7">7</li>
+            <li class="num" id="8">8</li>
+            <li class="num" id="9">9</li>
+            <li class="num" id="10">10</li>
+            <li class="num" id="11">11</li>
+            <li class="num" id="12">12</li>
+            <li class="num" id="13">13</li>
+            <li class="num" id="14">14</li>
+            <li class="num" id="15">15</li>
+        </ul>
+    </div>
+    <script src="node_modules/reqwest/reqwest.js"></script>
+    <script>
+        var sx,sy,ex,ey,mx,my;
+        var num = document.getElementsByClassName('num');
+      function load(){
+          document.addEventListener('touchstart',touch,false);
+          document.addEventListener('touchend',touch,false);
+          document.addEventListener('touchmove',touch,false)
+      }
 
+      function touch(event){
+          var event = event || window.event;
+          var id = document.getElementById('oInp');
+          if(event.type == 'touchstart'){
+               sy = event.touches[0].clientY;
+                sx = event.touches[0].clientX;
+          }
+
+          /*if(event.type == 'touchmove'){
+                      event.preventDefault();
+                      mx = event.touches[0].clientX;
+                      my = event.touches[0].clientY;
+                      console.log(sx);
+                      for(var i= 0,len = num.length;i<len;i++){
+                          num[i].addEventListener('touchmove',function(){
+                              console.log(this)
+                              this.style.position = 'absolute';
+                              this.style.left = mx-sx+'px';
+                              this.style.top = my+'px';
+                          })
+              }
+          }*/
+          if(event.type == 'touchend'){
+          window.onscroll = function(){
+              var  t= document.body.scrollTop
+              var  p= document.body.scrollHeight-window.innerHeight;
+              console.log(t);
+              console.log(p);
+              console.log(t == p)
+              if(t == p){
+                      ey = event.changedTouches[0].clientY;
+                      if (ey-sy<0){
+                          reqwest({
+                              url:'./json/testAjax.json',
+                              method:'get',
+                              success:function(xrh){
+                                  document.write(xrh.list[0])
+                              }
+                          })
+                      }
+                  }
+              }
+          }
+      }
+
+     window.addEventListener('load',load,false)
+    </script>
 </body>
 </html>
