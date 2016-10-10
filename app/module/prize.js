@@ -21,6 +21,7 @@ var Prize = React.createClass({
             method:'get',
             type:'json',
             success:function(xrh){
+                console.log(typeof xrh)
                 if(xrh.code){
                     if(_this.isMounted()){
                         _this.setState({

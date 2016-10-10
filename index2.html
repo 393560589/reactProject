@@ -26,81 +26,40 @@
     </style>
 </head>
 <body>
-    <div id="oInp">
-        <ul>
-            <li class="num" id="1">1</li>
-            <li class="num" id="2">2</li>
-            <li class="num" id="3">3</li>
-            <li class="num" id="4">4</li>
-            <li class="num" id="5">5</li>
-            <li class="num" id="6">6</li>
-            <li class="num" id="7">7</li>
-            <li class="num" id="8">8</li>
-            <li class="num" id="9">9</li>
-            <li class="num" id="10">10</li>
-            <li class="num" id="11">11</li>
-            <li class="num" id="12">12</li>
-            <li class="num" id="13">13</li>
-            <li class="num" id="14">14</li>
-            <li class="num" id="15">15</li>
-        </ul>
-    </div>
+
+    <input type="file" id="file" name="uploadfile"/>
+    <input type="submit" value="添加" id="submit">
+
+
+
     <script src="node_modules/reqwest/reqwest.js"></script>
+
     <script>
-        var sx,sy,ex,ey,mx,my;
-        var num = document.getElementsByClassName('num');
-      function load(){
-          document.addEventListener('touchstart',touch,false);
-          document.addEventListener('touchend',touch,false);
-          document.addEventListener('touchmove',touch,false)
-      }
 
-      function touch(event){
-          var event = event || window.event;
-          var id = document.getElementById('oInp');
-          if(event.type == 'touchstart'){
-               sy = event.touches[0].clientY;
-                sx = event.touches[0].clientX;
-          }
+        var submit = document.getElementById('submit')
+        submit.onclick = function() {
+            var files = document.getElementById('file');
+            var data = files.files;
+            console.log(data[0])
+            var formData = new FormData();
 
-          /*if(event.type == 'touchmove'){
-                      event.preventDefault();
-                      mx = event.touches[0].clientX;
-                      my = event.touches[0].clientY;
-                      console.log(sx);
-                      for(var i= 0,len = num.length;i<len;i++){
-                          num[i].addEventListener('touchmove',function(){
-                              console.log(this)
-                              this.style.position = 'absolute';
-                              this.style.left = mx-sx+'px';
-                              this.style.top = my+'px';
-                          })
-              }
-          }*/
-          if(event.type == 'touchend'){
-          window.onscroll = function(){
-              var  t= document.body.scrollTop
-              var  p= document.body.scrollHeight-window.innerHeight;
-              console.log(t);
-              console.log(p);
-              console.log(t == p)
-              if(t == p){
-                      ey = event.changedTouches[0].clientY;
-                      if (ey-sy<0){
-                          reqwest({
-                              url:'./json/testAjax.json',
-                              method:'get',
-                              success:function(xrh){
-                                  document.write(xrh.list[0])
-                              }
-                          })
-                      }
-                  }
-              }
-          }
-      }
+            formData.append('upfile',data[0])
 
-     window.addEventListener('load',load,false)
+            console.log(formData)
+           reqwest({
+                url: 'http://114.55.245.254/upload.php',
+                method: 'post',
+
+                data: formData,
+               processData: false,
+               contentType: false,
+                success: function (xrh) {
+                    console.log(typeof xrh)
+                    console.log(xrh.img)
+                }
+            })
+        }
+
     </script>
 </body>
 </html>

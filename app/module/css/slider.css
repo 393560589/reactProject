@@ -1,0 +1,8 @@
+:local(.addWrap){ position:relative; width:100%;background:#fff;margin:0; padding:0;}
+:local(.addWrap .swipe){overflow: hidden;visibility: hidden;position:relative;}
+:local(.swipeWrap){overflow:hidden;position:relative;}
+:local(.list) {float: left;width: 100%;position:relative;}
+:local(.position){ position:absolute; bottom:0; right:0; padding-right:8px; margin:0; background:#000; opacity: 0.4; width:100%; filter: alpha(opacity=50);text-align:right;}
+:local(.position li){width:10px;height:10px;margin:0 2px;display:inline-block;-webkit-border-radius:5px;border-radius:5px;background-color:#AFAFAF;}
+:local(.position .cur){background-color:#FF0000;}
+:local(.imgResponsive){ display: block; max-width:100%;height: auto;}
